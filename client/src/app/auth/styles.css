@@ -1,0 +1,98 @@
+button,
+input {
+    border: none;
+}
+
+.Login p {
+    font-size: 0.8rem;
+}
+
+.vectorBg {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    background-image: url('/login_bg.svg');
+    background-size: cover;
+    background-position: bottom;
+    width: 100vw;
+    height: 70vh;
+}
+
+.loginForm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginForm h2 {
+    margin-top: 100px;
+    margin-bottom: 25px;
+}
+
+input {
+    color: #1D1A3E;
+    margin-bottom: 20px;
+    padding: 0 30px;
+    width: 240px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 67px;
+}
+select{
+    color: #1D1A3E;
+    margin-bottom: 20px;
+    padding: 0 30px;
+    width: 240px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 67px;
+}
+
+.loginBtn {
+    margin: 20px 0px 20px;
+    width: 240px;
+    height: 35px;
+    background: #1D1A3E;
+    border-radius: 60px;
+}
+
+.registerForm {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.loginButtons {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px 50px;
+    gap: 10px;
+}
+
+.registerForm p {
+    text-align: center;
+}
+
+.fbLogin,
+.twLogin {
+    margin-top: 20px;
+    width: 150px;
+    height: 35px;
+    background: #5073B5;
+}
+
+.twLogin {
+    background: #35A6EF;
+}
+
+.registerForm span {
+    color: rgb(86, 68, 121);
+    font-weight: 700;
+}
