@@ -1,5 +1,6 @@
 "use client";
 import react, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import withAuth from "@/components/withAuth";
 import Image from "next/image";
 import Link from "next/link";
@@ -61,6 +62,7 @@ import BASE_URL from "@/utils/config";
 const Dashboard = () => {
   const role = JSON.parse(localStorage.getItem("user")).role;
   const [data, setDATA] = useState();
+  const router =  useRouter()
   const getAllLogs = async () => {
     try {
       const resp = await fetch(`${BASE_URL}/get?role=${role}`, {
@@ -84,6 +86,37 @@ const Dashboard = () => {
     getAllLogs();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      const id =  JSON.parse(localStorage.getItem("user"))._id
+      const res = await fetch(`${BASE_URL}/auth/logout/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (res.ok) {
+        const text = await res.text(); // Get the raw response text for debugging
+        console.log("Response Text:", text);
+
+        const data = JSON.parse(text); // Parse the JSON manually
+        console.log("Parsed Data:", data.data);
+
+        if (data) {
+          // Store user data (could use sessionStorage, localStorage, or a global state)
+          localStorage.clear();
+          router.push("/auth/login");
+        } else {
+          setError(data.message || "Logout failed");
+        }
+      } else {
+        setError("Login failed");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -101,6 +134,7 @@ const Dashboard = () => {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
+          <Button onClick={handleLogout}>signout</Button>
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <Tabs defaultValue="all">
