@@ -16,7 +16,7 @@ import BASE_URL from "@/utils/config";
 import useSocketActivity from "@/hooks/UserSocketActivity";
 
 export default function DialogDemo({ taskId, updateTask }) {
-  const userId = JSON.parse(localStorage.getItem("users"))._id;
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
 
   useSocketActivity(userId);
   const [data, setData] = useState({

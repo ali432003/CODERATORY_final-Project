@@ -19,8 +19,8 @@ export function CardDemo({
   updateTask,
   ...props
 }) {
+  const userId = JSON.parse(localStorage.getItem("user"))._id
   useSocketActivity(userId)
-  const userId = JSON.parse(localStorage.getItem("user")).id
   const handleDelete = async (id) => {
     try {
       const resp = await fetch(`${BASE_URL}/employee/deletetask/${id}`, {
