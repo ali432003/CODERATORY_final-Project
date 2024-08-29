@@ -15,7 +15,7 @@ const timeLogSchema = new mongoose.Schema({
         type: String
     },
     totalActivityTime: {
-        type: Number
+        type: Number 
     }, // Calculated in seconds or minutes
 }, { timestamps: true });
 
@@ -26,6 +26,12 @@ timeLogSchema.set('toJSON', {
             ret.createdAt = createdAtMoment.format("h.mm A, D/M/YY");
             const updatedAtMoment = moment(ret.updatedAt);
             ret.updatedAt = updatedAtMoment.format("h.mm A, D/M/YY");
+        }
+        // Ensure totalActivityTime is formatted properly
+        if (typeof ret.totalActivityTime === 'number') {
+            ret.totalActivityTime = `${ret.totalActivityTime} minutes`;
+        } else {
+            ret.totalActivityTime = 'N/A'; // Handle cases where totalActivityTime might be undefined or not a number
         }
         return ret;
     }

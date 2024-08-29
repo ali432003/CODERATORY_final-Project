@@ -10,7 +10,7 @@ const useSocketActivity = (userId) => {
 
   useEffect(() => {
     // Initialize the socket connection
-    socket = io('http://localhost:5000/api/v2', { withCredentials: true });
+    socket = io('http://localhost:5000/api/v2/', { withCredentials: true });
 
     // Emit the user-connected event
     socket.emit('user-connected', userId);

@@ -44,6 +44,6 @@ app.use("/api/v2/auth", Authrouter)
 
 
 const port = process.env.PORT
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

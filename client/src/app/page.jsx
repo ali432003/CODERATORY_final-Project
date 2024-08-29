@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "./styles.css";
 import Link from "next/link";
-import useSocketActivity from "@/hooks/UserSocketActivity";
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 
 export default function Home() {
   // const id = JSON.parse(localStorage.getItem("user"))._id;

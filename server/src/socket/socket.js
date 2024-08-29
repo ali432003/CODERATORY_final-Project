@@ -25,10 +25,10 @@ const initializeSocket = (server) => {
             console.log(`User ${userId} connected`);
 
             // Initialize or resume tracking for the connected user
-            const logs = await timeLogDB.findOne({ userId });
+            const logs = await timeLogDB.findOne({ userId: userId });
             if (!logs) {
                 // If no logs exist for the user, create a new entry
-                await timeLogDB.create({ userId, totalActivityTime: 0 });
+                await timeLogDB.create({ userId: userId, totalActivityTime: 0 });
             }
         });
 
@@ -43,20 +43,32 @@ const initializeSocket = (server) => {
             }
         });
 
+
         // Track user inactivity (e.g., mouse static or no keypress)
         socket.on('inactive', async (userId) => {
             console.log(`User ${userId} became inactive`);
 
             // If the user was active, calculate the time they were active and update the DB
             if (userActivityTimers[userId]) {
+                const startTime = userActivityTimers[userId];
                 const currentTime = Date.now();
-                const activityDuration = (currentTime - userActivityTimers[userId]) / (1000 * 60 * 60); // Convert milliseconds to hours
 
-                // Update the user's total activity time in the database
-                const logs = await timeLogDB.findOne({ userId });
-                if (logs) {
-                    logs.totalActivityTime += activityDuration;
-                    await logs.save();
+                if (!isNaN(startTime) && startTime <= currentTime) {
+                    const activityDuration = (currentTime - startTime) / (1000 * 60 * 60); // Convert to hours
+
+                    // Ensure the duration is valid and greater than zero
+                    if (!isNaN(activityDuration) && activityDuration > 0) {
+                        const logs = await timeLogDB.findOne({ userId });
+
+                        if (logs) {
+                            logs.totalActivityTime += activityDuration;
+                            await logs.save();
+                        }
+                    } else {
+                        console.error('Invalid activity duration:', activityDuration);
+                    }
+                } else {
+                    console.error('Invalid start time or current time:', { startTime, currentTime });
                 }
 
                 // Clear the timer for the user
