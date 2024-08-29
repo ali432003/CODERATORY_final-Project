@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import useSocketActivity from "@/hooks/UserSocketActivity";
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 import BASE_URL from "@/utils/config";
 import withAuth from "@/components/withAuth";
 

@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import BASE_URL from "@/utils/config";
-import useSocketActivity from "@/hooks/UserSocketActivity";
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 
 export function CardWithForm({ addTask }) {
   const id = JSON.parse(localStorage.getItem("user"))._id

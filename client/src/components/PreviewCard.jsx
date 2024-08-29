@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import BASE_URL from "@/utils/config";
 import DialogDemo from "./dialog";
-import useSocketActivity from "@/hooks/UserSocketActivity";
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 
 export function CardDemo({
   className,

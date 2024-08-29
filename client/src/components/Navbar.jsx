@@ -1,6 +1,6 @@
 'use client'
 
-import useSocketActivity from '@/hooks/UserSocketActivity'
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 

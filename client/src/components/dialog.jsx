@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import BASE_URL from "@/utils/config";
-import useSocketActivity from "@/hooks/UserSocketActivity";
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 
 export default function DialogDemo({ taskId, updateTask }) {
   const userId = JSON.parse(localStorage.getItem("user"))._id;

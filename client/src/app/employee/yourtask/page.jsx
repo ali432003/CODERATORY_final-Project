@@ -6,7 +6,7 @@ import { CardDemo } from "@/components/PreviewCard";
 import BASE_URL from "@/utils/config";
 import React from "react";
 import { CloudFog } from "lucide-react";
-import useSocketActivity from "@/hooks/UserSocketActivity";
+import useSocketActivity from "@/hooks/UserSocketActivity.js";
 import withAuth from "@/components/withAuth";
 
 const Page = () => {
